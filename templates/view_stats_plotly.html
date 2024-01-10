@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}View Stats (Plotly) {% endblock %}
+{% block content %}
+    <h2>View Aggregated Stats with Plotly</h2>
+    
+    <!-- Placeholder for the Plotly table -->
+    <div id="plotly-stats"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Inject Plotly table -->
+    <script>
+        var graphs = {{graphJSON | safe}};
+        Plotly.plot('plotly-stats', graphs, {});
+    </script>
+{% endblock %}

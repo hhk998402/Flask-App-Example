@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Add Records{% endblock %}
+{% block content %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/add_records.css') }}">
+    <h2>Add Record</h2>
+    <form id="addRecordForm">
+        <label for="name">Student's Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="marks">Marks (0-100):</label>
+        <input type="number" id="marks" name="marks" min="0" max="100" required>
+
+        <label for="grade">Grade:</label>
+        <input type="text" id="grade" name="grade" required>
+
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course" required>
+
+        <button type="button" onclick="submitForm()">Add Record</button>
+    </form>
+    <div id="output"></div>
+    <script>
+        function submitForm() {
+            var form = document.getElementById("addRecordForm");
+            var formData = {
+                name: form.elements["name"].value,
+                marks: parseFloat(form.elements["marks"].value),
+                grade: form.elements["grade"].value,
+                course: form.elements["course"].value
+            };
+
+            fetch("{{ url_for('add_record') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                var outputDiv = document.getElementById("output");
+                outputDiv.innerHTML = "<p style='color: green;'>Record added successfully!</p>";
+            })
+            .catch(error => {
+                var outputDiv = document.getElementById("output");
+                outputDiv.innerHTML = `<p style='color: red;'>Error adding record: ${error.message}</p>`;
+            });
+        }
+    </script>
+{% endblock %}

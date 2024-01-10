@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}View Records (Plotly) {% endblock %}
+{% block content %}
+    <h2>View Records with Plotly</h2>
+    
+    <!-- Placeholder for the Plotly table -->
+    <div id="plotly-table"></div>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Inject Plotly table -->
+    <script>
+        var graphs = {{graphJSON | safe}};
+        Plotly.plot('plotly-table', graphs, {});
+    </script>
+{% endblock %}

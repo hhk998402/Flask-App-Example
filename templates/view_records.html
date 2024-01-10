@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}View Records{% endblock %}
+
+{% block content %}
+    <h2>View Records</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Grade</th>
+                <th>Course</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.id }}</td>
+                <td>{{ record.name }}</td>
+                <td>{{ record.marks }}</td>
+                <td>{{ record.grade }}</td>
+                <td>{{ record.course }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

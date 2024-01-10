@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+    <div id="navbar">
+        <a href="{{ url_for('render_add_records_form') }}">Add Records</a>
+        <a href="{{ url_for('render_view_records') }}">View Records</a>
+        <a href="{{ url_for('render_view_records_plotly') }}">View Records (Plotly)</a>
+        <a href="{{ url_for('render_stats_plotly') }}">View Stats (Plotly)</a>
+        <!-- Add additional navigation links here -->
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
